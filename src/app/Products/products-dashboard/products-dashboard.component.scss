@@ -1,0 +1,43 @@
+.Products {
+    width: 50%;
+    position: relative;
+    background-color: white;
+    border-radius: 4px;
+    margin: auto;
+    margin-top: 10%;
+
+    
+    .Products-headers {
+        background-color: #232f3e;
+        height: 70px;
+        color: white;
+        display: grid;
+        text-align: center;
+        grid-template-columns: repeat(4,1fr);
+        align-items: center;
+    }
+
+    .Products-options {
+      height: 60px;
+      padding: 12px;
+      button {
+        float: left;
+        margin-top: 12px;
+      }
+
+      .Products-filters {
+        display: block;
+        float: right;
+        .Products-search {
+          margin-right: 10px;
+        }
+      }
+
+    }
+
+      .ui-inputtext {
+          font-size: 18px;
+          height: 40px;
+      }
+
+}

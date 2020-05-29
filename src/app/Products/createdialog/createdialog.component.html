@@ -1,0 +1,46 @@
+<h2 mat-dialog-title>{{title}}</h2>
+
+
+<mat-dialog-content [formGroup]="form">
+
+  <mat-form-field>
+
+    <input matInput placeholder="*Select Name" formControlName="name">
+    <mat-error *ngIf="form.get('name').hasError('required')">Name is required</mat-error>
+    <mat-error *ngIf="form.get('name').hasError('maxlength')">Name can't be more then 50 chars long</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+
+    <mat-select placeholder="*Select Category" [compareWith]="compareProducts" formControlName="category">
+
+      <mat-option *ngFor="let category of categories$ | async" [value]="category">
+        {{category?.name}}</mat-option>
+
+
+    </mat-select>
+    <mat-error>Category is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+
+    <input matInput placeholder="*Select Price" formControlName="price">
+    <mat-error *ngIf="form.get('price').hasError('required')">Price is required</mat-error>
+    <mat-error *ngIf="form.get('price').hasError('min')">Price can't be 0</mat-error>
+    <mat-error *ngIf="form.get('price').hasError('pattern')">Please use number only </mat-error>
+
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+
+  <button class="mat-raised-button" (click)="closeDialog()">
+    Close
+  </button>
+
+  <button class="mat-raised-button mat-primary" [disabled]="!form.valid" (click)="save()">
+    Save
+  </button>
+
+</mat-dialog-actions>

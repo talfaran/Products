@@ -1,0 +1,43 @@
+<div class="Products">
+  <div class="Products-options">
+    <button mat-flat-button color="primary" (click)="openCreateDialog()">Add New Product</button>
+    <div class="Products-filters">
+      <mat-form-field class="Products-search">
+        <mat-label>Search</mat-label>
+        <input #searchProducts matInput type="text" placeholder="By Name" [(ngModel)]="searchValue">
+      </mat-form-field>
+      <mat-form-field class="Products-select">
+        <mat-label>Sort By Category</mat-label>
+        <mat-select value="Name">
+          <mat-option checked (click)="sortByCategory('id')" value="id">None</mat-option>
+          <mat-option checked (click)="sortByCategory('price')" value="price">Price</mat-option>
+          <mat-option (click)="sortByCategory('date')" value="date">Date</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <!-- <input type="text" pInputText #searchProducts [(ngModel)]="searchValue"/> -->
+  </div>
+  <div class="Products-headers">
+    <div class="Name">
+      Name
+    </div>
+    <div class="Products-category">
+      Category
+    </div>
+    <div class="Products-filter">
+      Price
+    </div>
+    <div class="Products-date">
+      Date
+    </div>
+  </div>
+  <div class="Products-container">
+
+  </div>
+  <!-- using dblclick isn't somthing I would aprove of, but it was the task, so disagree and commit... -->
+  <app-product [data]="product" (dblclick)="openCreateDialog(product)" (deleteFunction)="deleteProduct($event)"
+    *ngFor='let product of products$ | async'>loading</app-product>
+
+
+</div>

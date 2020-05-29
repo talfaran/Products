@@ -1,0 +1,20 @@
+
+<div class="Product">
+  <div class="Product-name">
+  {{data?.name}}
+  </div>
+  <div class="Product-category">
+    {{data?.category?.name}}
+  </div>
+  <div class="Product-price">
+    {{data?.price | currency}}
+  </div>
+  <div class="Product-date">
+    {{data?.date | date : 'd/M/yy'}}
+  </div>
+<div class="Product-delete" (click)="deleteProduct(data?.id, $event)">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="26" viewBox="0 0 24 26">
+      <path fill="#F15151" fill-rule="evenodd" d="M20.437 7.296v14.26c0 1.542-1.212 2.802-2.721 2.851l-.091.001H6.375c-1.52 0-2.763-1.23-2.811-2.76l-.002-.092V7.296h16.875zm-5.625-5.704v1.426h7.032V5.87H2.156V3.018h7.031V1.592h5.626z"/>
+  </svg>
+</div>
+</div>
