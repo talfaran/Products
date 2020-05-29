@@ -7,7 +7,7 @@
 
     <input matInput placeholder="*Select Name" formControlName="name">
     <mat-error *ngIf="form.get('name').hasError('required')">Name is required</mat-error>
-    <mat-error *ngIf="form.get('name').hasError('maxlength')">Name can't be more then 50 chars long</mat-error>
+    <mat-error *ngIf="form.get('name').hasError('maxlength')">Name can't be more then 50 chars</mat-error>
   </mat-form-field>
 
   <mat-form-field>

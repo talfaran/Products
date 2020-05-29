@@ -32,8 +32,8 @@ export class ProductService {
     } else {
       for (let i = 0; i < numOfItem; i++) {
         newProduct = {
-          name: this.productNames[Math.floor(Math.random() * this.productNames.length - 1)],
-          category: this.productCategories[Math.floor(Math.random() * this.productCategories.length - 1)],
+          name: this.productNames[Math.floor(Math.random() * this.productNames.length)],
+          category: this.productCategories[Math.floor(Math.random() * this.productCategories.length)],
           date: new Date().toUTCString(),
           price: Math.floor(Math.random() * this.maxPrice) + 1,
           id: i
