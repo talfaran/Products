@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { ProductService } from '../product.service';
-import { debounceTime, tap, map, distinctUntilChanged, takeWhile, filter, switchMap, shareReplay, take, delay } from 'rxjs/operators';
+import { debounceTime, tap, map, distinctUntilChanged, takeWhile, filter, switchMap, shareReplay, take, delay, share, skipUntil } from 'rxjs/operators';
 import { fromEvent, concat, Subject, of, merge, Observable } from 'rxjs';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { CreatedialogComponent } from '../createdialog/createdialog.component';
@@ -23,9 +23,9 @@ export class ProductsDashboardComponent implements OnInit, AfterViewInit, OnDest
   public allProducts$ = this.productsService.products$.pipe(
     take(1),
     map((products) => products.sort((p1, p2) => {
-      return ('' + p1[this.sortBy]).localeCompare(p2[this.sortBy]);
+      return p1[this.sortBy] - p2[this.sortBy];
     })),
-    delay(0),
+    delay(1200),
     tap(() => this.isLoading = false)
   );
   public filteredProducts$ = this.productsService.products$.pipe(
@@ -34,7 +34,8 @@ export class ProductsDashboardComponent implements OnInit, AfterViewInit, OnDest
       .filter(product => product.name.toLowerCase()
         .includes(this.searchValue.toLowerCase()))
       .sort((p1, p2) => {
-        return this.sortBy === 'price' ? p1.price - p2.price : ('' + p1[this.sortBy]).localeCompare(p2[this.sortBy]);
+        return p1[this.sortBy] - p2[this.sortBy];
+        // ('' + p1[this.sortBy]).localeCompare(p2[this.sortBy]);
       })
     ),
   );
@@ -63,8 +64,8 @@ export class ProductsDashboardComponent implements OnInit, AfterViewInit, OnDest
       distinctUntilChanged(),
       switchMap(() => this.filteredProducts$)
     );
-
-    this.products$ = merge(this.allProducts$, searchProducts$, this.deleteProduct$)
+    const initiation = concat(this.allProducts$, this.deleteProduct$);
+    this.products$ = merge(initiation, searchProducts$)
       .pipe(
         tap((products) => localStorage.setItem('products', JSON.stringify(products)))
       );

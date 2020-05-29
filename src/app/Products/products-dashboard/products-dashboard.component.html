@@ -37,7 +37,8 @@
   </div>
   <!-- using dblclick isn't somthing I would aprove of, but it was the task, so disagree and commit... -->
   <app-product [data]="product" (dblclick)="openCreateDialog(product)" (deleteFunction)="deleteProduct($event)"
-    *ngFor='let product of products$ | async'>loading</app-product>
+    *ngFor='let product of products$ | async'></app-product>
 
 
 </div>
+<div id="loader" *ngIf="isLoading"></div>

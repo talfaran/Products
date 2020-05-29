@@ -16,6 +16,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule, MAT_DIALOG_DATA} from '@angular/material';
 import { CreatedialogComponent } from './Products/createdialog/createdialog.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { CreatedialogComponent } from './Products/createdialog/createdialog.comp
     MatButtonModule,
     MatSelectModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatProgressSpinnerModule
   ],
   providers: [ProductService, ReactiveFormsModule, MatDialogModule, { provide: MAT_DIALOG_DATA, useValue: [] }],
   bootstrap: [AppComponent],

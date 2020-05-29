@@ -42,3 +42,21 @@
       }
 
 }
+
+#loader {
+  position: fixed;
+  top: 47%;
+  left: 47%;
+  border: 18px solid #dfe8fc;
+  border-radius: 50%;
+  border-top: 18px solid #673ab7;
+  width: 120px;
+  height: 120px;
+  margin: auto;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
