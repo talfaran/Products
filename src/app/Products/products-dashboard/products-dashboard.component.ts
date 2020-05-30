@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { ProductService } from '../product.service';
-import { debounceTime, tap, map, distinctUntilChanged, takeWhile, filter, switchMap, shareReplay, take, delay, share, skipUntil } from 'rxjs/operators';
-import { fromEvent, concat, Subject, of, merge, Observable } from 'rxjs';
+import { debounceTime, tap, map, distinctUntilChanged, takeWhile, filter, switchMap, take, delay} from 'rxjs/operators';
+import { fromEvent, concat, merge, Observable } from 'rxjs';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { CreatedialogComponent } from '../createdialog/createdialog.component';
 import { IProduct } from '../Products.models';
@@ -35,7 +35,6 @@ export class ProductsDashboardComponent implements OnInit, AfterViewInit, OnDest
         .includes(this.searchValue.toLowerCase()))
       .sort((p1, p2) => {
         return p1[this.sortBy] - p2[this.sortBy];
-        // ('' + p1[this.sortBy]).localeCompare(p2[this.sortBy]);
       })
     ),
   );
