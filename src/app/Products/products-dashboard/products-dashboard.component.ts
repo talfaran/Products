@@ -39,7 +39,9 @@ export class ProductsDashboardComponent implements OnInit, AfterViewInit, OnDest
     ),
   );
 
-  public deleteProduct$ = this.filteredProducts$;
+  public deleteProduct$ = this.filteredProducts$.pipe(
+    tap((products) => localStorage.setItem('products', JSON.stringify(products)))
+  );
 
   public products$: Observable<IProduct[]>;
   public categories$ = this.productsService.getCategories();
@@ -64,10 +66,8 @@ export class ProductsDashboardComponent implements OnInit, AfterViewInit, OnDest
       switchMap(() => this.filteredProducts$)
     );
     const initiation = concat(this.allProducts$, this.deleteProduct$);
-    this.products$ = merge(initiation, searchProducts$)
-      .pipe(
-        tap((products) => localStorage.setItem('products', JSON.stringify(products)))
-      );
+    this.products$ = merge(initiation, searchProducts$);
+
   }
 
   deleteProduct(id) {

@@ -29,7 +29,7 @@ export class CreatedialogComponent implements OnInit {
     this.form = this.fb.group({
       name: [this.data.name, [Validators.required, Validators.maxLength(50)]],
       category: [this.data.category, [Validators.required]],
-      price: [this.data.price, [Validators.required, Validators.min(0.0000000000000000001), Validators.pattern('[0-9]*')]],
+      price: [this.data.price, [Validators.required, Validators.min(0.0000000000000000001), Validators.pattern('[0-9]*[.]?[0-9]*')]],
       id: this.data.id,
       date: this.data.date
     });
